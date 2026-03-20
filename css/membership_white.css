@@ -1,0 +1,159 @@
+/* =========================================
+   WHITE - @import common + 고유 스타일
+   ========================================= */
+@import url('membership_common.css');
+
+/* --- White 컬러 (기본값이 이미 Blue이므로 최소 오버라이드) --- */
+.light-theme .visual-card {
+    background: radial-gradient(circle at 30% 30%, #E3F2FD, #FFFFFF);
+    border: 1px solid rgba(74, 144, 226, 0.2);
+}
+
+.light-theme .plan-card {
+    border-color: rgba(74, 144, 226, 0.3);
+}
+
+/* =========================================
+   Benefit Highlight Section (White 전용)
+   ========================================= */
+.light-theme .highlight-section {
+    padding: 120px 20px;
+    background: linear-gradient(180deg, #F8FAFF 0%, #FFFFFF 100%);
+    text-align: center;
+}
+
+.light-theme .highlight-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin: 0 0 60px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.light-theme .highlight-title.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.light-theme .highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.light-theme .highlight-card {
+    background: white;
+    border-radius: 24px;
+    padding: 40px 28px 36px;
+    border: 1px solid #E8EDF2;
+    box-shadow: 0 8px 30px var(--accent-shadow);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.light-theme .highlight-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.light-theme .highlight-card:nth-child(1) { transition-delay: 0.1s; }
+.light-theme .highlight-card:nth-child(2) { transition-delay: 0.25s; }
+.light-theme .highlight-card:nth-child(3) { transition-delay: 0.4s; }
+
+.light-theme .highlight-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px var(--accent-hover-shadow);
+    border-color: rgba(74, 144, 226, 0.3);
+}
+
+.light-theme .highlight-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: var(--accent);
+    transition: transform 0.3s ease;
+}
+
+.light-theme .highlight-card:hover .highlight-icon {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.light-theme .highlight-number {
+    font-family: 'Oswald', sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: rgba(74, 144, 226, 0.07);
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.light-theme .highlight-card h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 10px 0;
+}
+
+.light-theme .highlight-card p {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+}
+
+.light-theme .highlight-value {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 2px;
+    background: var(--accent-bg);
+    padding: 8px 18px;
+    border-radius: 30px;
+    border: 1px solid rgba(74, 144, 226, 0.15);
+}
+
+.light-theme .highlight-value .val {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+}
+
+.light-theme .highlight-value .unit {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.light-theme .highlight-value .per {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-left: 4px;
+}
+
+@media (max-width: 768px) {
+    .light-theme .highlight-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+
+    .light-theme .highlight-title {
+        font-size: 1.6rem;
+    }
+}

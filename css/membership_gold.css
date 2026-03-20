@@ -1,0 +1,603 @@
+@import url('membership_common.css');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Pretendard:wght@300;400;600;800&family=Oswald:wght@300;500;700&display=swap');
+
+:root {
+    --bg-black: #0F0F0F;
+    --bg-dark-green: #0A1A15;
+    --text-white: #FFFFFF;
+    --text-gray: #B0B0B0;
+
+    --gold-main: #D4AF37;
+    /* Rich Gold */
+    --gold-bright: #FDD835;
+    /* High Vis Gold */
+    --gold-dark: #8A6E1F;
+
+    --accent-red: #E53935;
+    --shadow-gold: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    font-family: 'Pretendard', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.text-gold {
+    color: var(--gold-bright);
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.3) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.2;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 2;
+    padding-bottom: 60px;
+}
+
+.hero-title {
+    display: flex;
+    flex-direction: column;
+    font-size: 6rem;
+    line-height: 0.9;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.line-1 {
+    font-size: 3rem;
+    font-weight: 400;
+    color: var(--text-gray);
+    letter-spacing: 0.5em;
+}
+
+.line-2 {
+    font-size: 8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--gold-bright);
+}
+
+.line-3 {
+    font-size: 4rem;
+    color: var(--text-white);
+    letter-spacing: 0.2em;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-gray);
+    margin-top: 2rem;
+    font-weight: 300;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.6;
+    animation: fadeInOut 2s infinite;
+}
+
+.scroll-indicator span {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+}
+
+.scroll-indicator .line {
+    width: 1px;
+    height: 60px;
+    background: var(--text-white);
+}
+
+@keyframes fadeInOut {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* --- Impact Statement --- */
+.statement-section {
+    padding: 150px 20px;
+    background: var(--bg-black);
+    text-align: center;
+}
+
+.statement-text {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.3;
+    font-family: 'Pretendard', sans-serif;
+}
+
+.statement-sub {
+    font-size: 1.2rem;
+    margin-top: 30px;
+    color: var(--text-gray);
+    line-height: 1.8;
+}
+
+/* --- Benefit Sections --- */
+.benefit-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 40px;
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-bg {
+    background: #0A0A0A;
+}
+
+.dark-bg-2 {
+    background: #050505;
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.benefit-content {
+    max-width: 600px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.benefit-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.benefit-number {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10rem;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.05);
+    position: absolute;
+    top: -60px;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.right-align .benefit-number {
+    left: auto;
+    right: 0;
+}
+
+.benefit-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.benefit-value-box {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+    border-bottom: 2px solid var(--gold-main);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.benefit-value-box.right-mode {
+    flex-direction: row-reverse;
+    border-bottom: none;
+    border-top: 2px solid var(--gold-main);
+    padding-top: 10px;
+    padding-bottom: 0;
+}
+
+.benefit-value-box .unit {
+    font-size: 1rem;
+    color: var(--text-gray);
+}
+
+.benefit-value-box .amount {
+    font-family: 'Oswald', sans-serif;
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.benefit-value-box .currency {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.benefit-desc {
+    font-size: 1.3rem;
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+.benefit-tags {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.tag {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.icon-visual {
+    font-size: 8rem;
+    color: var(--gold-dark);
+    opacity: 0.2;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+/* --- Essentials Grid --- */
+.essentials-section {
+    padding: 120px 20px;
+    background: #111;
+}
+
+.section-header {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--gold-main);
+    margin-bottom: 60px;
+    letter-spacing: 5px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.section-header.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.essentials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.essential-item {
+    background: #1A1A1A;
+    padding: 30px;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.essential-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.essential-item:hover {
+    border-color: var(--gold-main);
+    background: #222;
+    transform: translateX(10px);
+}
+
+.icon-box {
+    font-size: 2rem;
+    color: var(--gold-main);
+    width: 60px;
+    height: 60px;
+    background: rgba(212, 175, 55, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.text-box h4 {
+    font-size: 1.2rem;
+    margin: 0 0 5px 0;
+    color: white;
+}
+
+.text-box p {
+    font-size: 0.9rem;
+    margin: 0;
+    color: var(--text-gray);
+}
+
+/* --- Price Section --- */
+/* --- Price Section --- */
+.price-section {
+    padding: 150px 20px;
+    background: var(--bg-black);
+    text-align: center;
+    border-top: 1px solid #333;
+}
+
+.price-container {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.8s ease;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.price-container.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.value-anchor {
+    text-align: center;
+    margin-bottom: 30px;
+    opacity: 0.6;
+}
+
+.value-anchor .label {
+    font-size: 1.2rem;
+    color: var(--text-gray);
+    margin: 0;
+}
+
+.value-anchor .total-value {
+    font-size: 3rem;
+    color: var(--text-gray);
+    font-weight: 700;
+    text-decoration: line-through;
+    text-decoration-color: var(--accent-red);
+    font-family: 'Oswald', sans-serif;
+}
+
+.price-divider {
+    text-align: center;
+    color: var(--gold-main);
+    margin: 20px 0;
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.price-card {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    border: 1px solid var(--gold-dark);
+    border-radius: 30px;
+    padding: 50px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: visible;
+}
+
+/* Gold Glow Background Effect */
+.price-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 60%);
+    animation: pulseGlow 4s infinite alternate;
+    z-index: 0;
+}
+
+@keyframes pulseGlow {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+.price-header {
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.price-header .period {
+    font-size: 1.5rem;
+    color: var(--gold-main);
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.price-display {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 30px;
+    font-family: 'Oswald', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: white;
+}
+
+/* Huge Price Number */
+.price-display .amount {
+    font-size: 8rem;
+    color: white;
+    text-shadow: 0 0 50px rgba(212, 175, 55, 0.6);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.price-display .currency {
+    font-size: 2rem;
+    color: var(--text-gray);
+}
+
+.price-display .won {
+    font-size: 3rem;
+    font-weight: 300;
+    margin-top: 20px;
+}
+
+
+.savings-badge {
+    display: inline-block;
+    background: var(--gold-main);
+    color: black;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+    animation: bounceBadge 2s infinite;
+}
+
+@keyframes bounceBadge {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-5px);
+    }
+
+    60% {
+        transform: translateY(-3px);
+    }
+}
+
+.price-sub {
+    font-size: 1.1rem;
+    color: var(--text-gray);
+    position: relative;
+    z-index: 1;
+    line-height: 1.6;
+}
+
+.join-btn {
+    margin-top: 60px;
+    background: var(--gold-main);
+    color: black;
+    font-size: 1.5rem;
+    font-weight: 800;
+    padding: 25px 80px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.join-btn:hover {
+    background: var(--gold-bright);
+    box-shadow: 0 0 30px var(--gold-main);
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .line-2 {
+        font-size: 5rem;
+    }
+
+    .line-1,
+    .line-3 {
+        font-size: 2rem;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .benefit-section {
+        flex-direction: column;
+        text-align: left;
+        padding: 60px 20px;
+    }
+
+    .dark-bg-2 {
+        text-align: left;
+        justify-content: flex-start;
+    }
+
+    .benefit-tags {
+        justify-content: flex-start;
+    }
+
+    .right-align .benefit-number {
+        left: 0;
+        right: auto;
+    }
+
+    .benefit-value-box .amount {
+        font-size: 4rem;
+    }
+
+    .price-display .amount {
+        font-size: 5rem;
+    }
+}

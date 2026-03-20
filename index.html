@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주오 입양 상담</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Pretendard:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/adoption-counseling.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <!-- Ambient Background -->
+    <div class="ambient ambient--orange"></div>
+    <div class="ambient ambient--sand"></div>
+    <div class="ambient ambient--navy"></div>
+
+    <!-- Main Wizard Container -->
+    <main class="counseling-wizard" id="wizard">
+
+        <!-- Wizard Stage -->
+        <section class="wizard-stage" id="wizard-stage" aria-live="polite">
+
+            <!-- Step 0: Landing -->
+            <article class="wizard-step" data-step="0" id="step-0">
+                <div class="step-content step-landing compact-landing">
+                    <div class="landing-hero compact-hero">
+                        <h2 class="hero-title compact-title">
+                            우리 아이에게 딱 맞는<br>
+                            <span class="text-gradient">케어 플랜</span>을 찾아보세요
+                        </h2>
+                    </div>
+
+                    <button type="button" class="btn-wizard-start compact-start" id="btn-start" data-action="start">
+                        <span class="btn-text">상담 시작하기</span>
+                        <span class="btn-shine"></span>
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+
+                    <div class="trust-badges compact-trust">
+                        <div class="trust-item">
+                            <i data-lucide="shield-check"></i>
+                            <span>1년 의무</span>
+                        </div>
+                        <div class="trust-item">
+                            <i data-lucide="calendar-check"></i>
+                            <span>평생 동결</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Step 1: Location Question -->
+            <article class="wizard-step" data-step="1" id="step-1" hidden>
+                <div class="step-content">
+                    <div class="question-header compact">
+                        <span class="question-number">질문 1/2</span>
+                        <h2 class="question-title">어디에 거주하시나요?</h2>
+                    </div>
+
+                    <div class="option-cards compact-cards">
+                        <button type="button" class="option-card compact-card location-card" data-option="location"
+                            data-value="capital" data-action="select-location">
+                            <div class="option-icon">
+                                <i data-lucide="building-2"></i>
+                            </div>
+                            <div class="option-content">
+                                <h3>수도권</h3>
+                                <p>서울 · 경기 · 인천</p>
+                            </div>
+                            <div class="option-check">
+                                <i data-lucide="check"></i>
+                            </div>
+                        </button>
+
+                        <button type="button" class="option-card compact-card location-card" data-option="location"
+                            data-value="regional" data-action="select-location">
+                            <div class="option-icon">
+                                <i data-lucide="map-pin"></i>
+                            </div>
+                            <div class="option-content">
+                                <h3>지방</h3>
+                                <p>그 외 지역</p>
+                            </div>
+                            <div class="option-check">
+                                <i data-lucide="check"></i>
+                            </div>
+                        </button>
+                    </div>
+
+                    <button type="button" class="btn-back compact-back" data-action="back">
+                        <i data-lucide="arrow-left"></i> 처음으로
+                    </button>
+                </div>
+            </article>
+
+            <!-- Step 2: Care Level Question -->
+            <article class="wizard-step" data-step="2" id="step-2" hidden>
+                <div class="step-content">
+                    <div class="question-header compact">
+                        <span class="question-number">질문 2/2</span>
+                        <h2 class="question-title">어떤 케어를 원하시나요?</h2>
+                    </div>
+
+                    <div class="option-cards compact-cards">
+                        <button type="button" class="option-card compact-card" data-option="care" data-value="premium"
+                            data-action="select-care">
+                            <div class="option-icon">
+                                <i data-lucide="crown"></i>
+                            </div>
+                            <div class="option-content">
+                                <h3>프리미엄 풀케어</h3>
+                                <p>모든 혜택을 한 번에</p>
+                            </div>
+                            <div class="option-check">
+                                <i data-lucide="check"></i>
+                            </div>
+                        </button>
+
+                        <button type="button" class="option-card compact-card" data-option="care"
+                            data-value="adult_care" data-action="select-care">
+                            <div class="option-icon">
+                                <i data-lucide="heart-handshake"></i>
+                            </div>
+                            <div class="option-content">
+                                <h3>성견용 케어 필요</h3>
+                                <p>질병 케어 특화</p>
+                            </div>
+                            <div class="option-check">
+                                <i data-lucide="check"></i>
+                            </div>
+                        </button>
+                    </div>
+
+                    <button type="button" class="btn-back compact-back" data-action="back">
+                        <i data-lucide="arrow-left"></i> 이전
+                    </button>
+                </div>
+            </article>
+
+            <!-- Step 3: Results Dashboard -->
+            <article class="wizard-step step-dashboard-wrapper" data-step="3" id="step-3" hidden>
+                <div class="step-content step-dashboard step-dashboard--huge">
+                    <!-- Dashboard Header -->
+                    <div class="dashboard-header">
+                        <div class="recommendation-badge">
+                            <i data-lucide="award"></i>
+                            <span>추천 플랜</span>
+                        </div>
+                        <h2 class="dashboard-title" id="dashboard-plan-name">VIP 풀케어</h2>
+                        <p class="dashboard-reason" id="dashboard-reason">수도권 거주 고객님에게 최적의 프리미엄 케어</p>
+                    </div>
+
+                    <!-- Dashboard Layout -->
+                    <div class="dashboard-layout">
+                        <!-- Left Section: Tabs + Main Card + Stats -->
+                        <div class="dashboard-left">
+                            <!-- Side Tabs -->
+                            <nav class="membership-tabs">
+                                <button type="button" class="tab-btn is-active" data-tab="vip" data-action="switch-tab">
+                                    <span class="tab-name">VIP</span>
+                                    <span class="tab-price">16만</span>
+                                    <span class="tab-badge best">BEST</span>
+                                </button>
+                                <button type="button" class="tab-btn" data-tab="silver" data-action="switch-tab">
+                                    <span class="tab-name">Silver</span>
+                                    <span class="tab-price">10만</span>
+                                </button>
+                                <button type="button" class="tab-btn" data-tab="white" data-action="switch-tab">
+                                    <span class="tab-name">White</span>
+                                    <span class="tab-price">10만</span>
+                                    <span class="tab-badge">지방 추천</span>
+                                </button>
+                                <button type="button" class="tab-btn" data-tab="gold" data-action="switch-tab">
+                                    <span class="tab-name">Gold</span>
+                                    <span class="tab-price">7만</span>
+                                </button>
+                            </nav>
+
+                            <!-- Main Content Area -->
+                            <div class="main-content">
+                                <!-- Main Card -->
+                                <div class="main-membership-card" id="main-card">
+                                    <div class="card-header">
+                                        <div class="membership-tier" id="membership-tier">VIP</div>
+                                        <a href="#" class="btn-view-details" id="btn-details">
+                                            <span>상세 혜택 보기</span>
+                                            <i data-lucide="arrow-right"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="price-display">
+                                        <span class="price-monthly" id="price-monthly">160,000</span>
+                                        <span class="price-unit">원/월</span>
+                                    </div>
+
+                                    <div class="quick-benefits" id="quick-benefits">
+                                        <!-- Top 4 benefits -->
+                                    </div>
+
+                                    <button type="button" class="btn-action btn-primary btn-cta" id="btn-consult"
+                                        data-action="start-consult">
+                                        <i data-lucide="file-text"></i>
+                                        <span>이 플랜 상세 보기</span>
+                                    </button>
+                                </div>
+
+                                <!-- Stats Row -->
+                                <div class="stats-row">
+                                    <div class="stat-item">
+                                        <span class="stat-label">월 납입금</span>
+                                        <strong class="stat-value" id="stat-monthly">160,000원</strong>
+                                    </div>
+                                    <div class="stat-divider"></div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">연간 혜택 가치</span>
+                                        <strong class="stat-value" id="stat-yearly">3,040,000원</strong>
+                                    </div>
+                                    <div class="stat-divider"></div>
+                                    <div class="stat-item highlight">
+                                        <span class="stat-label">개별 신청 대비 절약</span>
+                                        <strong class="stat-value text-orange" id="savings-amount">112만원</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Section: Action Buttons -->
+                        <div class="dashboard-right">
+                            <div class="dashboard-actions">
+                                <button type="button" class="btn-action btn-secondary" data-action="restart">
+                                    <i data-lucide="rotate-ccw"></i>
+                                    <span>처음부터 다시하기</span>
+                                </button>
+                                <button type="button" class="btn-action btn-secondary" onclick="openComparisonTable()">
+                                    <i data-lucide="table-2"></i>
+                                    <span>비교표 보기</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- Live Region for Announcements -->
+        <div class="sr-only" id="wizard-announcer" aria-live="polite" aria-atomic="true"></div>
+    </main>
+
+    <!-- Result Card Template -->
+    <template id="result-card-template">
+        <div class="result-card" data-plan-key="">
+            <div class="result-badge"></div>
+            <div class="result-header">
+                <h3 class="result-name"></h3>
+                <div class="result-price">
+                    <span class="price-amount"></span>
+                    <span class="price-period">/월</span>
+                </div>
+            </div>
+            <div class="result-features">
+                <ul class="feature-list"></ul>
+            </div>
+            <div class="result-value">
+                <span class="value-label">연간 혜택 가치</span>
+                <span class="value-amount"></span>
+            </div>
+            <a href="#" class="btn-select-plan">
+                <span>자세히 보기</span>
+                <i data-lucide="arrow-right"></i>
+            </a>
+        </div>
+    </template>
+
+    <!-- Compare Plan Selector Modal -->
+    <div class="compare-modal" id="compare-modal" hidden>
+        <div class="compare-modal-backdrop" id="compare-backdrop"></div>
+        <div class="compare-modal-box">
+            <h3 class="compare-modal-title">비교할 플랜 선택</h3>
+            <p class="compare-modal-desc">보고 싶은 플랜을 골라서 비교해보세요</p>
+            <div class="compare-pills" id="compare-pills">
+                <button class="compare-pill is-active" data-compare="white">
+                    <span class="pill-check">✓</span>White
+                </button>
+                <button class="compare-pill is-active" data-compare="silver">
+                    <span class="pill-check">✓</span>Silver
+                </button>
+                <button class="compare-pill is-active" data-compare="vip">
+                    <span class="pill-check">✓</span>VIP
+                </button>
+                <button class="compare-pill is-active" data-compare="gold">
+                    <span class="pill-check">✓</span>Gold
+                </button>
+            </div>
+            <div class="compare-modal-actions">
+                <button class="compare-btn-cancel" id="compare-cancel">취소</button>
+                <button class="compare-btn-open" id="compare-open">비교표 열기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Compare Table Modal -->
+    <div class="fullscreen-compare-modal" id="fullscreen-compare-modal" hidden>
+        <!-- 투명 캔버스 레이어 -->
+        <canvas id="drawing-canvas"></canvas>
+
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <button type="button" class="btn-close" id="btn-close-fullscreen">
+                <i data-lucide="x"></i>
+                <span>닫기</span>
+            </button>
+            <div id="top-bar-actions">
+                <button class="btn-pen" id="btn-toggle-pen">
+                    <i data-lucide="pen-tool"></i> <span>펜 쓰기 (OFF)</span>
+                </button>
+                <button class="btn-pen" id="btn-clear-pen" style="display:none;">
+                    <i data-lucide="eraser"></i> <span>지우기</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="table-card">
+                <table class="compare-table" id="compare-table">
+                    <thead>
+                        <tr>
+                            <th class="col-feature">혜택 항목</th>
+                            <th class="col-plan">
+                                <div class="plan-name">White</div>
+                                <div class="plan-price">10만<span class="unit">원/월</span></div>
+                            </th>
+                            <th class="col-plan">
+                                <div class="plan-name">Silver</div>
+                                <div class="plan-price">10만<span class="unit">원/월</span></div>
+                            </th>
+                            <th class="col-plan">
+                                <div class="plan-name">VIP</div>
+                                <div class="plan-price">16만<span class="unit">원/월</span></div>
+                            </th>
+                            <th class="col-plan">
+                                <div class="plan-name">Gold</div>
+                                <div class="plan-price">7만<span class="unit">원/월</span></div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 의료 혜택 -->
+                        <tr class="category-row">
+                            <td colspan="5">의료 혜택</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">기초 건강검진</td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">항체가 검사</td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">필수 예방접종</td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">중성화 수술</td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">심장사상충 예방 (12회)</td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">질병/상해 의료비 지원</td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                            <td><span class="text-value">30만원</span></td>
+                        </tr>
+
+                        <!-- 생활 혜택 -->
+                        <tr class="category-row">
+                            <td colspan="5">생활 혜택</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">유기농 사료+패드+간식 배송</td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">방문 훈련</td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                            <td><span class="text-value">1회</span></td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">동물등록 내장형칩</td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">주오몰 할인</td>
+                            <td><span class="text-value">20%</span></td>
+                            <td><span class="text-value">20%</span></td>
+                            <td><span class="text-value">30%</span></td>
+                            <td><span class="text-value">20%</span></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">2년차 추가 혜택</td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                            <td><span class="text-muted">종합검진<br>방문훈련</span></td>
+                            <td><span class="text-value">위생+목욕 4회<br>호텔링</span></td>
+                            <td><span class="text-muted">종합검진 전환</span></td>
+                        </tr>
+                        
+                        <!-- Footer Actions -->
+                        <tr class="footer-row">
+                            <td></td>
+                            <td>
+                                <button type="button" class="btn-select btn-secondary" onclick="document.getElementById('btn-close-fullscreen').click(); switchTab('white');">
+                                    <span>선택하기</span>
+                                    <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn-select btn-secondary" onclick="document.getElementById('btn-close-fullscreen').click(); switchTab('silver');">
+                                    <span>선택하기</span>
+                                    <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn-select btn-secondary" onclick="document.getElementById('btn-close-fullscreen').click(); switchTab('vip');">
+                                    <span>선택하기</span>
+                                    <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn-select btn-secondary" onclick="document.getElementById('btn-close-fullscreen').click(); switchTab('gold');">
+                                    <span>선택하기</span>
+                                    <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/adoption-counseling.js"></script>
+</body>
+
+</html>

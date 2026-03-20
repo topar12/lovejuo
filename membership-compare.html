@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JUO 멤버십 비교 - 주오 입양 상담</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Pretendard:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            /* Colors */
+            --bg: #f8fafc;
+            --panel: #ffffff;
+            --panel-strong: #f1f5f9;
+            --stroke: #e2e8f0;
+            --stroke-strong: #cbd5e1;
+            
+            /* Text */
+            --text: #0f172a;
+            --muted: #64748b;
+            --soft: #94a3b8;
+            
+            /* Brand */
+            --orange: #FF7A00;
+            --orange-deep: #e66e00;
+            --orange-light: #fff5eb;
+            --navy: #18243f;
+            --navy-deep: #0f172a;
+            
+            /* Radii */
+            --radius-xl: 24px;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+            
+            /* Typography */
+            --font-display: 'Oswald', sans-serif;
+            --font-body: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── Top Bar ── */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.625rem 1.25rem;
+            background: var(--panel);
+            border-bottom: 1px solid var(--stroke);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 10000;
+        }
+
+        /* 버튼 영역 — 추후 버튼 추가 */
+        #top-bar-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .plan-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 1;
+        }
+
+        .selector-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .selector-pills {
+            display: flex;
+            gap: 0.375rem;
+        }
+
+        .plan-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.3rem 0.75rem;
+            border: 1.5px solid var(--stroke);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--muted);
+            background: var(--panel);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            user-select: none;
+        }
+
+        .plan-pill:hover { border-color: var(--stroke-strong); color: var(--navy); }
+
+        .plan-pill.is-active {
+            background: var(--navy);
+            border-color: var(--navy);
+            color: #fff;
+        }
+
+        .plan-pill .pill-dot {
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: currentColor;
+            opacity: 0.6;
+        }
+
+        /* Close Button */
+        .btn-close {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.4rem 0.875rem;
+            background: var(--panel);
+            border: 1px solid var(--stroke);
+            border-radius: var(--radius-sm);
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: var(--font-body);
+            white-space: nowrap;
+        }
+
+        .btn-close:hover { background: var(--panel-strong); color: var(--navy); }
+        .btn-close i { width: 14px; height: 14px; }
+
+        /* ── Table Area ── */
+        .table-container {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: auto;
+            padding: 1rem 1.5rem; /* Reduced outer edge padding */
+            background: var(--bg);
+            display: flex;
+            align-items: center; /* Center table vertically if there's room */
+        }
+
+        .table-container::-webkit-scrollbar { width: 6px; height: 6px; }
+        .table-container::-webkit-scrollbar-track { background: transparent; }
+        .table-container::-webkit-scrollbar-thumb { background: var(--stroke-strong); border-radius: 3px; }
+
+        .table-card {
+            position: relative; /* Crucial for absolute canvas overlay */
+            width: 100%;
+            margin: 0 auto;
+            background: var(--panel);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(0,0,0,0.04);
+            overflow: hidden; /* For clipping table corners */
+            transition: max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Smooth resize */
+        }
+
+        /* Drawing Canvas */
+        #drawing-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9000;
+            pointer-events: none; /* Initially clicks pass through */
+            touch-action: auto;
+        }
+
+        /* Pen Tool Buttons */
+        .btn-pen {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.4rem 0.875rem;
+            background: var(--panel);
+            border: 1px solid var(--stroke);
+            border-radius: var(--radius-sm);
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: var(--font-body);
+        }
+        .btn-pen:hover { background: var(--panel-strong); color: var(--navy); }
+        .btn-pen.is-active {
+            background: var(--orange-light);
+            color: var(--orange-deep);
+            border-color: var(--orange);
+        }
+        .btn-pen i { width: 14px; height: 14px; }
+
+        .table-card[data-plans="2"] { max-width: 580px; }
+        .table-card[data-plans="3"] { max-width: 740px; }
+        .table-card[data-plans="4"], .table-card:not([data-plans]) { max-width: 900px; }
+
+        /* Compare Table */
+        .compare-table {
+            width: 100%;
+            min-width: 560px;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        .compare-table th,
+        .compare-table td {
+            padding: 0.625rem 0.625rem; /* Slightly increased padding again */
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+            vertical-align: middle;
+        }
+
+        .compare-table thead th {
+            background: var(--panel);
+            padding-top: 1rem; /* Slightly increased */
+            padding-bottom: 0.875rem; /* Slightly increased */
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 2px solid rgba(0,0,0,0.03);
+        }
+
+        .col-feature {
+            width: 26%;
+            text-align: left;
+            padding-left: 1rem !important; /* Reduced */
+            font-weight: 700;
+            color: var(--navy);
+            font-size: 0.8125rem;
+        }
+
+        .col-plan { width: 18.5%; position: relative; }
+
+
+
+        .plan-name {
+            font-family: var(--font-display);
+            font-size: 1rem; /* Slightly smaller */
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.1rem;
+        }
+
+        .plan-price {
+            font-family: var(--font-display);
+            font-size: 0.875rem; /* Slightly smaller */
+            font-weight: 700;
+            color: var(--text);
+        }
+
+
+
+        .plan-price .unit {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--muted);
+        }
+
+        /* Category Row */
+        .category-row td {
+            background: var(--panel-strong);
+            text-align: left;
+            padding: 0.375rem 1rem; /* Reduced padding */
+            font-size: 0.6875rem; /* Smaller text */
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: none;
+        }
+
+
+
+        /* Feature Rows */
+        .feature-name {
+            text-align: left;
+            padding-left: 1rem !important; /* Reduced */
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.75rem; /* Slightly smaller */
+        }
+
+        .icon-check { color: var(--orange); width: 16px; height: 16px; margin: 0 auto; display: block; }
+        .icon-minus { color: var(--stroke-strong); width: 14px; height: 14px; margin: 0 auto; display: block; }
+
+        .text-value { font-size: 0.75rem; font-weight: 600; color: var(--navy); line-height: 1.2; }
+        .text-muted { font-size: 0.6875rem; color: var(--muted); line-height: 1.2; }
+
+        /* Hover & Zebra Striping */
+        .compare-table tbody tr:nth-child(even):not(.category-row) td { 
+            background-color: #f8fafc; /* Subtle zebra backplate */
+        }
+        .compare-table tbody tr:not(.category-row):hover td { 
+            background-color: var(--orange-light); 
+        }
+
+
+        /* Footer Row */
+        .footer-row td {
+            padding: 0.5rem 0.5rem; /* Reduced */
+            border-bottom: none;
+            background: var(--panel);
+        }
+
+        .compare-table tbody tr.footer-row:hover td { background-color: var(--panel); }
+
+
+        .btn-select {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            padding: 0.4rem 0.75rem; /* Smaller button padding */
+            font-size: 0.75rem; /* Smaller font */
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 999px; /* Pill shape */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            max-width: 100px; /* Reduced width */
+        }
+
+        .btn-primary { background: var(--orange); color: #fff; }
+        .btn-primary:hover { background: var(--orange-deep); }
+        .btn-secondary { background: var(--panel-strong); color: var(--navy); border: 1px solid var(--stroke); }
+        .btn-secondary:hover { background: var(--stroke); }
+
+        /* Column visibility */
+        .compare-table.hide-white th:nth-child(2),
+        .compare-table.hide-white td:nth-child(2) { display: none !important; }
+        .compare-table.hide-silver th:nth-child(3),
+        .compare-table.hide-silver td:nth-child(3) { display: none !important; }
+        .compare-table.hide-vip th:nth-child(4),
+        .compare-table.hide-vip td:nth-child(4) { display: none !important; }
+        .compare-table.hide-gold th:nth-child(5),
+        .compare-table.hide-gold td:nth-child(5) { display: none !important; }
+    </style>
+</head>
+
+<body>
+    <!-- 투명 캔버스 레이어 (전체 화면) -->
+    <canvas id="drawing-canvas"></canvas>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <button type="button" class="btn-close" onclick="window.close()">
+            <i data-lucide="x"></i>
+            <span>닫기</span>
+        </button>
+        <div id="top-bar-actions">
+            <!-- 펜 드로잉 기능 버튼 -->
+            <button class="btn-pen" id="btn-toggle-pen">
+                <i data-lucide="pen-tool"></i> <span>펜 쓰기 (OFF)</span>
+            </button>
+            <button class="btn-pen" id="btn-clear-pen" style="display:none;">
+                <i data-lucide="eraser"></i> <span>지우기</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <div class="table-card">
+            <table class="compare-table" id="compare-table">
+                <thead>
+                    <tr>
+                        <th class="col-feature">혜택 항목</th>
+                        <th class="col-plan">
+                            <div class="plan-name">White</div>
+                            <div class="plan-price">10만<span class="unit">원/월</span></div>
+                        </th>
+                        <th class="col-plan">
+                            <div class="plan-name">Silver</div>
+                            <div class="plan-price">10만<span class="unit">원/월</span></div>
+                        </th>
+                        <th class="col-plan">
+                                            <div class="plan-name">VIP</div>
+                            <div class="plan-price">16만<span class="unit">원/월</span></div>
+                        </th>
+                        <th class="col-plan">
+                            <div class="plan-name">Gold</div>
+                            <div class="plan-price">7만<span class="unit">원/월</span></div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 의료 혜택 -->
+                    <tr class="category-row">
+                        <td colspan="5">의료 혜택</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">기초 건강검진</td>
+                        <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                        <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                        <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                        <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">항체가 검사</td>
+                        <td><i data-lucide="minus" class="icon-minus"></i></td>
+                        <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                        <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                        <td><i data-lucide="minus" class="icon-minus"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">필수 예방접종</td>
+                        <td><i data-lucide="minus" class="icon-minus"></i></td>
+                        <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                        <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                        <td><i data-lucide="minus" class="icon-minus"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">중성화 수술</td>
+                        <td><i data-lucide="minus" class="icon-minus"></i></td>
+                        <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                        <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                        <td><i data-lucide="minus" class="icon-minus"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">심장사상충 예방 (12회)</td>
+                        <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                        <td><i data-lucide="minus" class="icon-minus"></i></td>
+                        <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                        <td><i data-lucide="minus" class="icon-minus"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">질병/상해 의료비 지원</td>
+                        <td><i data-lucide="minus" class="icon-minus"></i></td>
+                        <td><i data-lucide="minus" class="icon-minus"></i></td>
+                        <td><i data-lucide="minus" class="icon-minus"></i></td>
+                        <td><span class="text-value">30만원</span></td>
+                    </tr>
+
+                    <!-- 생활 혜택 -->
+                    <tr class="category-row">
+                        <td colspan="5">생활 혜택</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">유기농 사료+패드+간식 배송</td>
+                        <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                        <td><i data-lucide="minus" class="icon-minus"></i></td>
+                        <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                        <td><i data-lucide="minus" class="icon-minus"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">방문 훈련</td>
+                        <td><i data-lucide="minus" class="icon-minus"></i></td>
+                        <td><i data-lucide="minus" class="icon-minus"></i></td>
+                        <td><span class="text-value">1회</span></td>
+                        <td><i data-lucide="minus" class="icon-minus"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">동물등록 내장형칩</td>
+                        <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                        <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                        <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                        <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">주오몰 할인</td>
+                        <td><span class="text-value">20%</span></td>
+                        <td><span class="text-value">20%</span></td>
+                        <td><span class="text-value">30%</span></td>
+                        <td><span class="text-value">20%</span></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">2년차 추가 혜택</td>
+                        <td><i data-lucide="minus" class="icon-minus"></i></td>
+                        <td><span class="text-muted">종합검진<br>방문훈련</span></td>
+                        <td><span class="text-value">위생+목욕 4회<br>호텔링</span></td>
+                        <td><span class="text-muted">종합검진 전환</span></td>
+                    </tr>
+                    
+                    <!-- Footer Actions -->
+                    <tr class="footer-row">
+                        <td></td>
+                        <td>
+                            <a href="membership_white_detail.html" class="btn-select btn-secondary" target="_blank">
+                                <span>상세 보기</span>
+                                <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="membership_silver_detail.html" class="btn-select btn-secondary" target="_blank">
+                                <span>상세 보기</span>
+                                <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                            </a>
+                        </td>
+                        <td class="">
+                            <a href="membership_vip_detail.html" class="btn-select btn-secondary" target="_blank">
+                                <span>상세 보기</span>
+                                <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="membership_gold_detail.html" class="btn-select btn-secondary" target="_blank">
+                                <span>상세 보기</span>
+                                <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div><!-- /.table-container -->
+
+    <script>
+        (function() {
+            const table = document.getElementById('compare-table');
+            const card = document.querySelector('.table-card');
+            const PLANS = ['white', 'silver', 'vip', 'gold'];
+
+            // URL 파라미터 로직
+            const urlParams = new URLSearchParams(window.location.search);
+            const plansParam = urlParams.get('plans');
+            const selected = plansParam
+                ? new Set(plansParam.split(',').filter(p => PLANS.includes(p)))
+                : new Set(PLANS);
+
+            // Hide anything not selected and resize card
+            card.setAttribute('data-plans', selected.size);
+            PLANS.forEach(plan => {
+                table.classList.toggle(`hide-${plan}`, !selected.has(plan));
+            });
+
+            // ===== 펜 드로잉(Canvas Overlay) 로직 =====
+            const canvas = document.getElementById('drawing-canvas');
+            const ctx = canvas.getContext('2d');
+            const btnToggle = document.getElementById('btn-toggle-pen');
+            const btnClear = document.getElementById('btn-clear-pen');
+
+            let isDrawingMode = false;
+            let isDrawing = false;
+            let lastX = 0;
+            let lastY = 0;
+
+            // 크기 연동 (화면 크기 변경 시마다 캔버스 동기화)
+            function updateCanvasSize() {
+                // 기존 그림 백업
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = canvas.width;
+                tempCanvas.height = canvas.height;
+                const tCtx = tempCanvas.getContext('2d');
+                if(canvas.width > 0 && canvas.height > 0) tCtx.drawImage(canvas, 0, 0);
+
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                // 펜 스타일 설정
+                ctx.lineWidth = 4;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                ctx.strokeStyle = '#FF0000'; // 빨간색
+
+                // 백업한 그림 복구
+                if(canvas.width > 0 && canvas.height > 0) ctx.drawImage(tempCanvas, 0, 0);
+            }
+            window.addEventListener('resize', updateCanvasSize);
+            updateCanvasSize(); // 초기 설정
+
+            function getPos(e) {
+                const rect = canvas.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                return {
+                    x: clientX - rect.left,
+                    y: clientY - rect.top
+                };
+            }
+
+            function startDraw(e) {
+                if (!isDrawingMode) return;
+                // 터치 기기에서 그리기 중엔 스크롤이 발생하지 않도록 방지
+                if(e.type === 'touchstart') e.preventDefault(); 
+                isDrawing = true;
+                const pos = getPos(e);
+                lastX = pos.x;
+                lastY = pos.y;
+            }
+
+            function draw(e) {
+                if (!isDrawing || !isDrawingMode) return;
+                if(e.type === 'touchmove') e.preventDefault();
+                const pos = getPos(e);
+                ctx.beginPath();
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(pos.x, pos.y);
+                ctx.stroke();
+                lastX = pos.x;
+                lastY = pos.y;
+            }
+
+            function stopDraw() {
+                isDrawing = false;
+            }
+
+            // 이벤트 바인딩
+            canvas.addEventListener('mousedown', startDraw);
+            canvas.addEventListener('mousemove', draw);
+            window.addEventListener('mouseup', stopDraw); // 화면 밖에서 떼면 멈춤 대응
+
+            canvas.addEventListener('touchstart', startDraw, {passive: false});
+            canvas.addEventListener('touchmove', draw, {passive: false});
+            window.addEventListener('touchend', stopDraw);
+
+            // 펜 모드 켜기/끄기
+            btnToggle.addEventListener('click', () => {
+                isDrawingMode = !isDrawingMode;
+                btnToggle.classList.toggle('is-active', isDrawingMode);
+                
+                // CSS 통과 제어
+                canvas.style.pointerEvents = isDrawingMode ? 'auto' : 'none';
+                canvas.style.touchAction = isDrawingMode ? 'none' : 'auto';
+                
+                btnClear.style.display = isDrawingMode ? 'inline-flex' : 'none';
+                
+                btnToggle.innerHTML = isDrawingMode 
+                    ? `<i data-lucide="mouse-pointer-2"></i> <span>펜 끄기 (ON)</span>` 
+                    : `<i data-lucide="pen-tool"></i> <span>펜 쓰기 (OFF)</span>`;
+                lucide.createIcons();
+            });
+
+            // 모두 지우기
+            btnClear.addEventListener('click', () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            });
+
+            lucide.createIcons();
+        })();
+    </script>
+</body>
+
+</html>

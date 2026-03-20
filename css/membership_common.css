@@ -1,0 +1,450 @@
+/* =========================================
+   MEMBERSHIP COMMON
+   - 전체 등급 공유: 리셋, 키프레임
+   - White/Silver 공유: .light-theme 스코프
+   ========================================= */
+
+/* ===== 1. UNIVERSAL (모든 등급) ===== */
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard', sans-serif;
+    overflow-x: hidden;
+}
+
+/* ===== 2. SHARED KEYFRAMES ===== */
+@keyframes slideInLeft {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+@keyframes scrollLine {
+    0%   { transform: scaleY(0); transform-origin: top; }
+    50%  { transform: scaleY(1); transform-origin: top; }
+    51%  { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-20px); }
+}
+
+/* =========================================
+   3. LIGHT THEME (White & Silver 공통)
+   - body.light-theme 에서만 적용
+   ========================================= */
+
+/* --- Base --- */
+.light-theme {
+    color: #2C3E50;
+    background: white;
+
+    --accent: #4A90E2;
+    --accent-light: #64B5F6;
+    --accent-bg: rgba(74, 144, 226, 0.1);
+    --accent-bg-gradient: linear-gradient(135deg, #E3F2FD 0%, #F5F7FA 100%);
+    --accent-border: #BBDEFB;
+    --accent-shadow: rgba(74, 144, 226, 0.08);
+    --accent-hover-shadow: rgba(74, 144, 226, 0.12);
+    --text-dark: #2C3E50;
+    --text-light: #546E7A;
+    --text-muted: #BDC3C7;
+    --card-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Scroll Progress --- */
+.light-theme .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    z-index: 100;
+    width: 0%;
+    transition: width 0.1s;
+}
+
+/* --- Hero --- */
+.light-theme .hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f0f2f5 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.light-theme .hero-title {
+    font-family: 'Oswald', sans-serif;
+    display: flex;
+    flex-direction: column;
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 30px 0;
+    letter-spacing: -2px;
+}
+
+.light-theme .hero-title .line-1 {
+    color: var(--text-muted);
+    transform: translateX(-50px);
+    opacity: 0;
+    animation: slideInLeft 1s forwards 0.5s;
+}
+
+.light-theme .hero-title .line-2 {
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform: translateX(50px);
+    opacity: 0;
+    animation: slideInRight 1s forwards 0.8s;
+}
+
+.light-theme .hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-light);
+    opacity: 0;
+    animation: fadeIn 1s forwards 1.2s;
+    line-height: 1.6;
+}
+
+.light-theme .scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: var(--text-light);
+    opacity: 0;
+    animation: fadeIn 1s forwards 1.5s;
+}
+
+.light-theme .scroll-indicator .line {
+    width: 1px;
+    height: 60px;
+    background: var(--text-muted);
+    animation: scrollLine 2s infinite;
+}
+
+/* --- Story Section --- */
+.light-theme .story-section {
+    min-height: 80vh;
+    padding: 100px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: white;
+}
+
+.light-theme .story-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.light-theme .story-container.reverse {
+    flex-direction: row-reverse;
+}
+
+.light-theme .story-text {
+    flex: 1;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.light-theme .story-text.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.light-theme .badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    background: var(--accent-bg);
+    color: var(--accent);
+}
+
+.light-theme .story-text h2 {
+    font-size: 3.5rem;
+    margin: 0 0 30px 0;
+    line-height: 1.2;
+    background: linear-gradient(45deg, var(--text-dark), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.light-theme .story-text p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+/* --- Visual Card --- */
+.light-theme .story-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.8s ease 0.2s;
+}
+
+.light-theme .story-visual.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.light-theme .visual-card {
+    width: 400px;
+    height: 500px;
+    border-radius: 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+}
+
+.light-theme .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+    z-index: 1;
+    position: relative;
+}
+
+.light-theme .visual-card:hover .card-image {
+    transform: scale(1.05);
+}
+
+/* --- Floating Items --- */
+.light-theme .floating-item {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    animation: float 4s infinite ease-in-out;
+    z-index: 10;
+    color: var(--accent);
+}
+
+.light-theme .item-1 {
+    top: 10%;
+    right: 10%;
+    animation-delay: 0s;
+}
+
+.light-theme .item-2 {
+    bottom: 15%;
+    left: 10%;
+    animation-delay: 1.5s;
+}
+
+/* --- Plan Card Section --- */
+.light-theme .plan-section {
+    padding: 120px 20px;
+    background: #FAFAFA;
+    text-align: center;
+}
+
+.light-theme .section-title {
+    font-size: 2rem;
+    color: var(--text-muted);
+    letter-spacing: 5px;
+    margin-bottom: 80px;
+    font-family: 'Oswald', sans-serif;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.light-theme .section-title.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.light-theme .plan-card-container {
+    display: flex;
+    justify-content: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.light-theme .plan-card {
+    width: 100%;
+    background: white;
+    padding: 50px 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 50px var(--accent-shadow);
+    transition: all 0.4s;
+    opacity: 0;
+    transform: translateY(40px);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.light-theme .plan-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.light-theme .plan-card:hover {
+    transform: translateY(-10px);
+}
+
+.light-theme .plan-header h4 {
+    font-size: 2.5rem;
+    margin: 0;
+    font-family: 'Oswald', sans-serif;
+    color: var(--accent);
+}
+
+.light-theme .plan-price {
+    font-size: 2rem;
+    margin: 10px 0;
+    font-weight: 300;
+}
+
+.light-theme .plan-price span {
+    font-size: 1rem;
+    color: #999;
+}
+
+.light-theme .plan-desc {
+    color: #888;
+    margin-bottom: 30px;
+}
+
+.light-theme .plan-benefits {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.light-theme .plan-benefits ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.light-theme .plan-benefits li {
+    margin-bottom: 12px;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #555;
+}
+
+.light-theme .plan-benefits i {
+    color: var(--accent);
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.light-theme .transfer-benefits {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.light-theme .total-benefit-box {
+    margin-top: auto;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    background: var(--accent-bg-gradient);
+    border: 1px solid var(--accent-border);
+    color: var(--accent);
+}
+
+.light-theme .total-benefit-box .label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.light-theme .total-benefit-box .amount {
+    font-size: 1.8rem;
+    font-weight: 800;
+    font-family: 'Oswald', sans-serif;
+    line-height: 1;
+}
+
+.light-theme .total-benefit-box .amount small {
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Pretendard', sans-serif;
+    margin-left: 2px;
+}
+
+/* --- Light Theme Responsive --- */
+@media (max-width: 768px) {
+    .light-theme .story-container,
+    .light-theme .story-container.reverse {
+        flex-direction: column;
+    }
+
+    .light-theme .hero-title {
+        font-size: 3rem;
+    }
+
+    .light-theme .visual-card {
+        width: 100%;
+        height: 300px;
+    }
+
+    .light-theme .story-section {
+        padding: 60px 20px;
+    }
+}

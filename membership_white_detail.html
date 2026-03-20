@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Membership - 매달 찾아가는 케어</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/membership_white.css">
+</head>
+
+<body class="light-theme">
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="line-1">DELIVERED</span>
+                <span class="line-2">WITH LOVE</span>
+            </h1>
+            <p class="hero-subtitle">
+                건강도, 맛있는 식사도<br>
+                매달 문 앞까지 찾아갑니다.
+            </p>
+            <div class="scroll-indicator">
+                <span>SCROLL</span>
+                <div class="line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="story-container">
+            <div class="story-text" data-scroll>
+                <div class="badge">HOME CARE</div>
+                <h2>사료 걱정, 건강 걱정<br>한 번에 내려놓으세요.</h2>
+                <p>
+                    매달 <strong>유기농 사료와 간식, 패드</strong>가 정기 배송되고<br>
+                    <strong>심장사상충 예방</strong>과 <strong>기초 건강검진</strong>까지—<br>
+                    반려생활에 꼭 필요한 것만 빈틈없이 채웁니다.
+                </p>
+            </div>
+            <div class="story-visual" data-scroll>
+                <div class="visual-card">
+                    <img src="assets/whitep.webp" alt="Home Care" class="card-image">
+                    <div class="floating-item item-1"><i class="fa-solid fa-bone"></i></div>
+                    <div class="floating-item item-2"><i class="fa-solid fa-bowl-food"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefit Highlight Section (NEW) -->
+    <section class="highlight-section">
+        <h3 class="highlight-title" data-scroll>매달 찾아오는 세 가지 안심</h3>
+        <div class="highlight-grid">
+            <div class="highlight-card" data-scroll>
+                <div class="highlight-icon">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <div class="highlight-number">01</div>
+                <h4>유기농 정기 배송</h4>
+                <p>사료, 간식, 배변패드까지<br>매달 엄선된 용품이 집 앞으로.</p>
+                <div class="highlight-value">
+                    <span class="val">72</span><span class="unit">만원</span>
+                    <span class="per">/년</span>
+                </div>
+            </div>
+            <div class="highlight-card" data-scroll>
+                <div class="highlight-icon">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <div class="highlight-number">02</div>
+                <h4>심장사상충 완벽 예방</h4>
+                <p>치명적인 심장사상충으로부터<br>12개월 내내 안전하게.</p>
+                <div class="highlight-value">
+                    <span class="val">30</span><span class="unit">만원</span>
+                    <span class="per">/년</span>
+                </div>
+            </div>
+            <div class="highlight-card" data-scroll>
+                <div class="highlight-icon">
+                    <i class="fa-solid fa-stethoscope"></i>
+                </div>
+                <div class="highlight-number">03</div>
+                <h4>기초 건강검진</h4>
+                <p>눈에 보이지 않는 건강까지<br>꼼꼼하게 확인합니다.</p>
+                <div class="highlight-value">
+                    <span class="val">35</span><span class="unit">만원</span>
+                    <span class="per">상당</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plan Detail Section -->
+    <section class="plan-section">
+        <h3 class="section-title" data-scroll>ALL IN ONE PLAN</h3>
+
+        <div class="plan-card-container">
+            <div class="plan-card" data-scroll>
+                <div class="plan-header">
+                    <h4>WHITE</h4>
+                    <div class="plan-price">100,000<span>원/월</span></div>
+                    <p class="plan-desc">건강 + 배송, 한 번에 해결</p>
+                </div>
+                <div class="plan-benefits">
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> <span>심장사상충 예방 (12회)</span></li>
+                        <li><i class="fa-solid fa-check"></i> <span>기초 건강 검진</span></li>
+                        <li><i class="fa-solid fa-check"></i> <span>유기농 사료+패드+간식 매월 배송</span></li>
+                        <li><i class="fa-solid fa-check"></i> <span>주오몰 20% 상시 할인</span></li>
+                        <li><i class="fa-solid fa-check"></i> <span>동물등록 내장형 칩</span></li>
+                    </ul>
+                    <div class="total-benefit-box">
+                        <span class="label">연간 혜택 가치</span>
+                        <span class="amount">147<small>만원+</small></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('[data-scroll]').forEach(el => {
+            observer.observe(el);
+        });
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (scrollTop / scrollHeight) * 100;
+            document.querySelector('.scroll-progress').style.width = scrolled + '%';
+        });
+    </script>
+
+    <!-- Back to Results -->
+    <style>
+        .btn-back-results {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 9999;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.125rem;
+            background: rgba(255, 255, 255, 0.92);
+            color: #18243f;
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 999px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.07);
+            cursor: pointer;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .btn-back-results:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-1px);
+        }
+        .btn-back-results svg {
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+    <button class="btn-back-results" onclick="window.opener ? window.close() : history.back()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        결과로 돌아가기
+    </button>
+</body>
+
+</html>

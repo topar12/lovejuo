@@ -1,0 +1,267 @@
+/* =========================================
+   SILVER - @import common + 고유 스타일
+   ========================================= */
+@import url('membership_common.css');
+
+/* --- Silver 컬러 오버라이드 --- */
+.light-theme {
+    --accent: #00BFA5;
+    --accent-light: #4DB6AC;
+    --accent-bg: rgba(0, 191, 165, 0.1);
+    --accent-bg-gradient: linear-gradient(135deg, #E0F2F1 0%, #F5F7FA 100%);
+    --accent-border: #B2DFDB;
+    --accent-shadow: rgba(0, 191, 165, 0.08);
+    --accent-hover-shadow: rgba(0, 191, 165, 0.15);
+    --text-muted: #B0BEC5;
+}
+
+/* --- Silver 레이아웃 오버라이드 --- */
+.light-theme .hero-section {
+    background: radial-gradient(circle at 50% 50%, #ffffff 0%, #ECEFF1 100%);
+}
+
+.light-theme .story-section {
+    background: #F5F7FA;
+}
+
+.light-theme .visual-card {
+    background: radial-gradient(circle at 70% 30%, #ECEFF1, #CFD8DC);
+    border: 1px solid rgba(176, 190, 197, 0.3);
+}
+
+.light-theme .item-1 {
+    top: 15%;
+    left: 5%;
+    right: auto;
+    animation-delay: 0.5s;
+}
+
+.light-theme .item-2 {
+    bottom: 10%;
+    right: 15%;
+    left: auto;
+    animation-delay: 2s;
+}
+
+.light-theme .plan-header h4 {
+    color: #546E7A;
+}
+
+.light-theme .plan-card {
+    border-color: var(--accent);
+}
+
+.light-theme .story-text h2 {
+    background: linear-gradient(45deg, #2C3E50, #546E7A);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* =========================================
+   Medical Journey Section (Silver 전용)
+   ========================================= */
+.light-theme .journey-section {
+    padding: 120px 20px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F5F7FA 50%, #FFFFFF 100%);
+    text-align: center;
+}
+
+.light-theme .journey-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin: 0 0 12px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.light-theme .journey-title.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.light-theme .journey-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin: 0 0 60px 0;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.6s ease 0.15s;
+}
+
+.light-theme .journey-subtitle.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.light-theme .journey-timeline {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.light-theme .journey-year {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.light-theme .journey-year.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.light-theme .year-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.light-theme .year-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 20px;
+}
+
+.light-theme .badge-2 {
+    background: linear-gradient(135deg, #78909C, #546E7A);
+}
+
+.light-theme .year-desc {
+    font-size: 1rem;
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.light-theme .journey-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.light-theme .journey-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: white;
+    border: 1px solid #E8EDF2;
+    border-radius: 16px;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.light-theme .journey-item:hover {
+    transform: translateX(6px);
+    border-color: rgba(0, 191, 165, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 191, 165, 0.08);
+}
+
+.light-theme .journey-item.evolved {
+    background: linear-gradient(135deg, rgba(0, 191, 165, 0.03), rgba(255, 255, 255, 1));
+    border-color: rgba(0, 191, 165, 0.2);
+}
+
+.light-theme .journey-item.evolved:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 20px var(--accent-hover-shadow);
+}
+
+.light-theme .j-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #F0F4F8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    flex-shrink: 0;
+}
+
+.light-theme .j-icon.evolved-icon {
+    background: linear-gradient(135deg, rgba(0, 191, 165, 0.12), rgba(0, 191, 165, 0.04));
+    color: var(--accent);
+}
+
+.light-theme .j-info { flex: 1; }
+
+.light-theme .j-info h5 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 2px 0;
+}
+
+.light-theme .j-info p {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    margin: 0;
+}
+
+.light-theme .j-value {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-light);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.light-theme .j-value.evolved-val {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+/* Transition Arrow */
+.light-theme .journey-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin: 10px 0;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.6s ease;
+}
+
+.light-theme .journey-arrow.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.light-theme .arrow-line {
+    width: 2px;
+    height: 24px;
+    background: linear-gradient(to bottom, transparent, #B0BEC5, transparent);
+}
+
+.light-theme .arrow-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #F5F7FA;
+    border: 1px solid #E0E0E0;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.light-theme .arrow-badge i {
+    color: var(--accent);
+    font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .light-theme .journey-title { font-size: 1.6rem; }
+    .light-theme .journey-item { padding: 14px 16px; gap: 12px; }
+    .light-theme .j-icon { width: 38px; height: 38px; font-size: 0.95rem; }
+}
