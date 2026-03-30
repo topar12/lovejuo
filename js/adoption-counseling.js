@@ -23,17 +23,31 @@ const PLAN_CATALOG = {
         badge: 'BEST',
         title: 'VIP 풀케어',
         subtitle: '입양 및 평생 건강 프리미엄 솔루션',
+        targetAudience: '모든 의료 혜택과 프리미엄 생활 케어를 한 번에 받고 싶은 보호자님께 추천합니다.',
         price: '160,000원',
         value: '304만원+',
         href: 'membership_vip_detail.html',
         features: [
-            '필수 예방접종 (강아지 6회/고양이 4회)',
-            '중성화 수술 (5kg 미만)',
-            '심장사상충 예방 (12회)',
-            '기초 건강검진 + 항체가 검사',
-            '유기농 사료+패드+간식 배송',
-            '가르쳐 주오 (방문 훈련 1회)',
-            '주오몰 최고 등급 (30% 할인)'
+            {
+                category: '의료 혜택',
+                icon: 'stethoscope',
+                items: ['필수 예방접종 (강아지 6회/고양이 4회)', '기초 건강검진', '항체가 검사', '중성화 수술 (5kg 미만)', '심장사상충 예방 (12회)', '동물등록 내장형칩']
+            },
+            {
+                category: '생활 혜택',
+                icon: 'shopping-bag',
+                items: ['유기농 사료+패드+간식 배송', '주오몰 할인 (30%)']
+            },
+            {
+                category: '케어 서비스',
+                icon: 'paw-print',
+                items: ['방문 훈련 (1회)']
+            },
+            {
+                category: '2년차 혜택',
+                icon: 'gift',
+                items: ['종합 건강검진', '종합백신 · 광견병 주사', '위생·목욕 서비스 4회', '호텔링 1박']
+            }
         ],
         theme: 'vip'
     },
@@ -43,15 +57,26 @@ const PLAN_CATALOG = {
         badge: 'SPECIAL',
         title: 'Gold 케어',
         subtitle: '유기견/성견 질병 케어 특화',
+        targetAudience: '이미 성장한 아이거나, 잦은 질병/상해로 집중적인 의료비 지원이 필요한 보호자님께 추천합니다.',
         price: '70,000원',
-        value: '75만원+',
+        value: '110만원+',
         href: 'membership_gold_detail.html',
         features: [
-            '질병/상해 의료비 지원 (30만원)',
-            '기초 건강검진',
-            '동물등록 내장형칩',
-            '주오몰 20% 할인',
-            '종합 건강검진 전환 가능'
+            {
+                category: '의료 혜택',
+                icon: 'stethoscope',
+                items: ['질병/상해 의료비 지원 (30만원)', '기초 건강검진', '동물등록 내장형칩']
+            },
+            {
+                category: '생활 혜택',
+                icon: 'shopping-bag',
+                items: ['사료 3개월 지원 (더주오 프리미엄)', '주오몰 할인 (20%)']
+            },
+            {
+                category: '2년차 혜택',
+                icon: 'gift',
+                items: ['종합 건강검진']
+            }
         ],
         theme: 'gold'
     },
@@ -61,16 +86,26 @@ const PLAN_CATALOG = {
         badge: 'POPULAR',
         title: 'Silver 케어',
         subtitle: '수도권 기본 의료 완비',
+        targetAudience: '필수 예방접종과 중성화 등 꼭 필요한 기본 의료를 탄탄하게 챙기고 싶은 보호자님께 추천합니다.',
         price: '100,000원',
         value: '132만원+',
         href: 'membership_silver_detail.html',
         features: [
-            '필수 예방접종 (강아지 6회/고양이 4회)',
-            '중성화 수술 (5kg 미만)',
-            '항체가 검사',
-            '동물등록 내장형칩',
-            '주오몰 20% 할인',
-            '2년차 전환: 종합 검진, 방문 훈련'
+            {
+                category: '의료 혜택',
+                icon: 'stethoscope',
+                items: ['필수 예방접종 (강아지 6회/고양이 4회)', '항체가 검사', '중성화 수술 (5kg 미만)', '동물등록 내장형칩']
+            },
+            {
+                category: '생활 혜택',
+                icon: 'shopping-bag',
+                items: ['사료 3개월 지원', '주오몰 할인 (20%)']
+            },
+            {
+                category: '2년차 혜택',
+                icon: 'gift',
+                items: ['종합 건강검진', '방문 훈련 (1회)']
+            }
         ],
         theme: 'silver'
     },
@@ -80,15 +115,21 @@ const PLAN_CATALOG = {
         badge: 'BASIC',
         title: 'White 케어',
         subtitle: '지방 실속 생활 케어',
+        targetAudience: '사료 정기 배송과 함께 필수 건강검진을 실속 있게 누리고 싶은 보호자님께 추천합니다.',
         price: '100,000원',
         value: '147만원+',
         href: 'membership_white_detail.html',
         features: [
-            '심장사상충 예방 (12회)',
-            '기초 건강검진',
-            '유기농 사료+패드+간식 배송',
-            '동물등록 내장형칩',
-            '주오몰 20% 할인'
+            {
+                category: '의료 혜택',
+                icon: 'stethoscope',
+                items: ['심장사상충 예방 (12회)', '기초 건강검진', '동물등록 내장형칩']
+            },
+            {
+                category: '생활 혜택',
+                icon: 'shopping-bag',
+                items: ['유기농 사료+패드+간식 배송', '주오몰 할인 (20%)']
+            }
         ],
         theme: 'white'
     }
@@ -198,9 +239,6 @@ function goToStep(stepIndex, direction = 'forward') {
 
     // Announce for accessibility
     announceStep(elements, stepIndex);
-
-    // Sync history
-    syncHistory(stepIndex);
 }
 
 function goBack() {
@@ -230,9 +268,6 @@ function restartWizard() {
 
     // Go to first step
     renderStepTransition(elements, previousStep, 0);
-
-    // Sync history
-    syncHistory(0);
 }
 
 function canProceedToStep(stepIndex) {
@@ -240,7 +275,7 @@ function canProceedToStep(stepIndex) {
     if (stepIndex === 1) return true; // Can always go to location question
     if (stepIndex === 2) return state.answers.location !== null;
     if (stepIndex === 3) {
-        return state.answers.location !== null && state.answers.careLevel !== null;
+        return true;
     }
     return false;
 }
@@ -269,10 +304,7 @@ function selectCare(value) {
 
     // Calculate recommendations
     state.recommendations = getRecommendations(state.answers);
-    
-    // Update tab visibility based on recommendations
-    updateTabVisibility(state.recommendations);
-    
+
     // Select the first recommendation by default
     switchTab(state.recommendations[0]);
 
@@ -280,17 +312,6 @@ function selectCare(value) {
     queueStepChange(() => {
         renderResults(getElements());
         goToStep(3, 'forward');
-    });
-}
-
-function updateTabVisibility(recommendations) {
-    document.querySelectorAll('.tab-btn').forEach(tab => {
-        const plan = tab.dataset.tab;
-        if (recommendations.includes(plan)) {
-            tab.style.display = 'flex';
-        } else {
-            tab.style.display = 'none';
-        }
     });
 }
 
@@ -362,22 +383,13 @@ function renderResults(elements) {
     
     // Calculate ROI
     const roi = Math.round((totalBenefit / yearlyPrice) * 100);
-    
-    // Update dashboard header
-    const planNameEl = document.getElementById('dashboard-plan-name');
-    const reasonEl = document.getElementById('dashboard-reason');
-    if (planNameEl) planNameEl.textContent = plan.title;
-    if (reasonEl) {
-        reasonEl.textContent = plan.subtitle;
-    }
 
     // Update main card
     const tierEl = document.getElementById('membership-tier');
-    const monthlyEl = document.getElementById('price-monthly');
-    const detailsBtn = document.getElementById('btn-details');
+    const audienceEl = document.getElementById('target-audience');    const detailsBtn = document.getElementById('btn-details');
     
     if (tierEl) tierEl.textContent = plan.name;
-    if (monthlyEl) monthlyEl.textContent = plan.price.replace('/월', '').replace('원', '');
+    if (audienceEl) audienceEl.innerHTML = plan.targetAudience;
     if (detailsBtn) detailsBtn.href = plan.href;
     
     // Update stats row
@@ -389,13 +401,15 @@ function renderResults(elements) {
     if (statYearlyEl) statYearlyEl.textContent = `${formatMoney(totalBenefit)}원`;
     if (savingsEl) savingsEl.textContent = `${formatMoney(savings)}원`;
     
-    // Update quick benefits (top 4)
+    // Update quick benefits (categorized)
     const benefitsContainer = document.getElementById('quick-benefits');
     if (benefitsContainer) {
-        benefitsContainer.innerHTML = plan.features.slice(0, 4).map(feature => `
-            <div class="benefit-item">
-                <i data-lucide="check-circle-2"></i>
-                <span>${feature}</span>
+        benefitsContainer.innerHTML = plan.features.map(group => `
+            <div class="benefit-group">
+                <h4 class="group-title"><i data-lucide="${group.icon}"></i>${group.category}</h4>
+                <ul class="group-list">
+                    ${group.items.map(item => `<li><i data-lucide="check-circle-2"></i><span>${item}</span></li>`).join('')}
+                </ul>
             </div>
         `).join('');
     }
@@ -412,20 +426,6 @@ function announceStep(elements, stepIndex) {
     announcer.textContent = `${stepName} 단계로 이동했습니다.`;
 }
 
-// History Management
-function syncHistory(stepIndex) {
-    const url = new URL(window.location.href);
-    url.searchParams.set('step', stepIndex);
-    window.history.pushState({ step: stepIndex }, '', url);
-}
-
-function handlePopState(event) {
-    if (event.state && typeof event.state.step === 'number') {
-        const targetStep = event.state.step;
-        const direction = targetStep < state.currentStep ? 'back' : 'forward';
-        goToStep(targetStep, direction);
-    }
-}
 
 // Event Handlers
 function handleActionClick(event) {
@@ -436,7 +436,13 @@ function handleActionClick(event) {
 
     switch (action) {
         case 'start':
-            goToStep(1, 'forward');
+            state.recommendations = ['vip', 'silver', 'white', 'gold'];
+            document.querySelectorAll('.tab-btn').forEach(tab => {
+                tab.style.display = 'flex';
+            });
+            switchTab('vip');
+            renderResults(getElements());
+            goToStep(3, 'forward');
             break;
         case 'select-location': {
             const locationValue = button.dataset.value;
@@ -488,17 +494,13 @@ function switchTab(planKey) {
     const plan = PLAN_CATALOG[planKey];
     if (!plan) return;
     
-    // Update header
-    const planNameEl = document.getElementById('dashboard-plan-name');
-    if (planNameEl) planNameEl.textContent = plan.title;
-    
     // Update main card
     const tierEl = document.getElementById('membership-tier');
-    const monthlyEl = document.getElementById('price-monthly');
+    const audienceEl = document.getElementById('target-audience');
     const detailsBtn = document.getElementById('btn-details');
     
     if (tierEl) tierEl.textContent = plan.name;
-    if (monthlyEl) monthlyEl.textContent = plan.price.replace('/월', '').replace('원', '');
+    if (audienceEl) audienceEl.innerHTML = plan.targetAudience;
     if (detailsBtn) detailsBtn.href = plan.href;
     
     // Update stats row
@@ -520,13 +522,15 @@ function switchTab(planKey) {
     if (statYearlyEl) statYearlyEl.textContent = `${formatMoney(totalBenefit)}원`;
     if (savingsEl) savingsEl.textContent = `${formatMoney(savings)}원`;
     
-    // Update quick benefits
+    // Update quick benefits (categorized)
     const benefitsContainer = document.getElementById('quick-benefits');
     if (benefitsContainer) {
-        benefitsContainer.innerHTML = plan.features.slice(0, 4).map(feature => `
-            <div class="benefit-item">
-                <i data-lucide="check-circle-2"></i>
-                <span>${feature}</span>
+        benefitsContainer.innerHTML = plan.features.map(group => `
+            <div class="benefit-group">
+                <h4 class="group-title"><i data-lucide="${group.icon}"></i>${group.category}</h4>
+                <ul class="group-list">
+                    ${group.items.map(item => `<li><i data-lucide="check-circle-2"></i><span>${item}</span></li>`).join('')}
+                </ul>
             </div>
         `).join('');
     }
@@ -662,8 +666,6 @@ function bindEvents() {
         wizard.addEventListener('click', handleActionClick);
     }
 
-    // Handle browser back/forward
-    window.addEventListener('popstate', handlePopState);
 }
 
 // Initialize
@@ -679,40 +681,20 @@ function init() {
     bindEvents();
     bindCompareModal();
 
-    // Check URL for step parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const stepParam = urlParams.get('step');
-    let startStep = 0; // Default: start from landing (step 0)
-    
-    if (stepParam !== null) {
-        const stepIndex = parseInt(stepParam, 10);
-        if (!isNaN(stepIndex) && stepIndex >= 0 && stepIndex < STEP_CONFIG.length) {
-            startStep = stepIndex;
-        }
-    }
-    
-    // Set initial state without animation
-    state.currentStep = startStep;
+    // Set initial state
+    state.currentStep = 0;
 
-    // Show the target step immediately without animation
+    // Show step 0, hide others
     const { steps } = elements;
-
-    // Update step visibility
     steps.forEach((step, index) => {
-        step.hidden = index !== startStep;
+        step.hidden = index !== 0;
         step.classList.remove('is-exiting', 'exit-to-left', 'exit-to-right', 'enter-from-right', 'enter-from-left');
-        if (index === startStep) {
+        if (index === 0) {
             step.classList.add('is-active');
         } else {
             step.classList.remove('is-active');
         }
     });
-
-    // Only sync history if step is explicitly set in URL
-    // Don't modify URL on initial load to avoid file:// protocol issues
-    if (stepParam !== null) {
-        syncHistory(startStep);
-    }
 }
 
 // Compare modal
@@ -721,14 +703,8 @@ function openComparisonTable() {
     if (!modal) return;
 
     document.querySelectorAll('.compare-pill').forEach(pill => {
-        const plan = pill.dataset.compare;
-        if (state.recommendations.includes(plan)) {
-            pill.style.display = '';
-            pill.classList.add('is-active');
-        } else {
-            pill.style.display = 'none';
-            pill.classList.remove('is-active');
-        }
+        pill.style.display = '';
+        pill.classList.add('is-active');
     });
 
     modal.hidden = false;
@@ -915,9 +891,46 @@ function bindCompareModal() {
     }
 }
 
+// Info Modal Functions
+function openInfoModal() {
+    const modal = document.getElementById('info-modal');
+    if (modal) {
+        modal.hidden = false;
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    }
+}
+
+function closeInfoModal(dontShowToday = false) {
+    const modal = document.getElementById('info-modal');
+    if (modal) {
+        modal.hidden = true;
+    }
+    if (dontShowToday) {
+        const tomorrow = new Date();
+        tomorrow.setHours(24, 0, 0, 0);
+        localStorage.setItem('juo_hide_promo_until', tomorrow.getTime());
+    }
+}
+
+function checkAndShowPromoModal() {
+    const hideUntil = localStorage.getItem('juo_hide_promo_until');
+    if (!hideUntil || new Date().getTime() > parseInt(hideUntil, 10)) {
+        // Show after a short delay for smooth effect
+        setTimeout(() => {
+            openInfoModal();
+        }, 300);
+    }
+}
+
 // Start when DOM is ready
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', () => {
+        init();
+        checkAndShowPromoModal();
+    });
 } else {
     init();
+    checkAndShowPromoModal();
 }

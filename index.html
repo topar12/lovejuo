@@ -22,6 +22,11 @@
 
     <!-- Main Wizard Container -->
     <main class="counseling-wizard" id="wizard">
+        
+        <!-- Home Floating Button -->
+        <button type="button" class="btn-floating-home" data-action="restart" title="처음으로">
+            <i data-lucide="home"></i>
+        </button>
 
         <!-- Wizard Stage -->
         <section class="wizard-stage" id="wizard-stage" aria-live="polite">
@@ -146,16 +151,6 @@
             <!-- Step 3: Results Dashboard -->
             <article class="wizard-step step-dashboard-wrapper" data-step="3" id="step-3" hidden>
                 <div class="step-content step-dashboard step-dashboard--huge">
-                    <!-- Dashboard Header -->
-                    <div class="dashboard-header">
-                        <div class="recommendation-badge">
-                            <i data-lucide="award"></i>
-                            <span>추천 플랜</span>
-                        </div>
-                        <h2 class="dashboard-title" id="dashboard-plan-name">VIP 풀케어</h2>
-                        <p class="dashboard-reason" id="dashboard-reason">수도권 거주 고객님에게 최적의 프리미엄 케어</p>
-                    </div>
-
                     <!-- Dashboard Layout -->
                     <div class="dashboard-layout">
                         <!-- Left Section: Tabs + Main Card + Stats -->
@@ -164,21 +159,17 @@
                             <nav class="membership-tabs">
                                 <button type="button" class="tab-btn is-active" data-tab="vip" data-action="switch-tab">
                                     <span class="tab-name">VIP</span>
-                                    <span class="tab-price">16만</span>
                                     <span class="tab-badge best">BEST</span>
                                 </button>
                                 <button type="button" class="tab-btn" data-tab="silver" data-action="switch-tab">
                                     <span class="tab-name">Silver</span>
-                                    <span class="tab-price">10만</span>
                                 </button>
                                 <button type="button" class="tab-btn" data-tab="white" data-action="switch-tab">
                                     <span class="tab-name">White</span>
-                                    <span class="tab-price">10만</span>
                                     <span class="tab-badge">지방 추천</span>
                                 </button>
                                 <button type="button" class="tab-btn" data-tab="gold" data-action="switch-tab">
                                     <span class="tab-name">Gold</span>
-                                    <span class="tab-price">7만</span>
                                 </button>
                             </nav>
 
@@ -194,9 +185,12 @@
                                         </a>
                                     </div>
 
-                                    <div class="price-display">
-                                        <span class="price-monthly" id="price-monthly">160,000</span>
-                                        <span class="price-unit">원/월</span>
+                                    <div class="target-audience-display" style="margin-bottom: 0.5rem; padding: 1.25rem; background: #fff; border-radius: var(--radius-md); border: 2px solid var(--orange-light); border-left: 5px solid var(--orange); box-shadow: 0 4px 15px rgba(255, 122, 0, 0.06);">
+                                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                            <span style="background: var(--orange); color: #fff; font-size: 0.7rem; font-weight: 800; padding: 0.2rem 0.5rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.05em;">Point</span>
+                                            <span style="color: var(--orange-deep); font-weight: 800; font-size: 0.95rem;">이런 분께 꼭 필요해요!</span>
+                                        </div>
+                                        <p class="target-audience-text" id="target-audience" style="font-size: 1.05rem; font-weight: 700; color: var(--navy); margin: 0; line-height: 1.5; word-break: break-word;"></p>
                                     </div>
 
                                     <div class="quick-benefits" id="quick-benefits">
@@ -210,32 +204,16 @@
                                     </button>
                                 </div>
 
-                                <!-- Stats Row -->
-                                <div class="stats-row">
-                                    <div class="stat-item">
-                                        <span class="stat-label">월 납입금</span>
-                                        <strong class="stat-value" id="stat-monthly">160,000원</strong>
-                                    </div>
-                                    <div class="stat-divider"></div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">연간 혜택 가치</span>
-                                        <strong class="stat-value" id="stat-yearly">3,040,000원</strong>
-                                    </div>
-                                    <div class="stat-divider"></div>
-                                    <div class="stat-item highlight">
-                                        <span class="stat-label">개별 신청 대비 절약</span>
-                                        <strong class="stat-value text-orange" id="savings-amount">112만원</strong>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
 
                         <!-- Right Section: Action Buttons -->
                         <div class="dashboard-right">
                             <div class="dashboard-actions">
-                                <button type="button" class="btn-action btn-secondary" data-action="restart">
-                                    <i data-lucide="rotate-ccw"></i>
-                                    <span>처음부터 다시하기</span>
+                                <button type="button" class="btn-action btn-secondary" onclick="openInfoModal()">
+                                    <i data-lucide="alert-circle" style="color: var(--orange);"></i>
+                                    <span>필독사항</span>
                                 </button>
                                 <button type="button" class="btn-action btn-secondary" onclick="openComparisonTable()">
                                     <i data-lucide="table-2"></i>
@@ -353,12 +331,12 @@
                     <tbody>
                         <!-- 의료 혜택 -->
                         <tr class="category-row">
-                            <td colspan="5">의료 혜택</td>
+                            <td colspan="5">🩺 의료 혜택</td>
                         </tr>
                         <tr>
                             <td class="feature-name">기초 건강검진</td>
                             <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
-                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
                             <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
                             <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
                         </tr>
@@ -399,23 +377,21 @@
                         </tr>
 
                         <!-- 생활 혜택 -->
-                        <tr class="category-row">
-                            <td colspan="5">생활 혜택</td>
+                        <tr>
+                            <td class="feature-name">종합 건강검진</td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                            <td><span class="text-value">2년차</span></td>
+                            <td><span class="text-value">2년차</span></td>
+                            <td><span class="text-value">2년차</span></td>
                         </tr>
                         <tr>
-                            <td class="feature-name">유기농 사료+패드+간식 배송</td>
-                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
-                            <td><i data-lucide="minus" class="icon-minus"></i></td>
-                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
-                            <td><i data-lucide="minus" class="icon-minus"></i></td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">방문 훈련</td>
+                            <td class="feature-name">종합백신 · 광견병 주사</td>
                             <td><i data-lucide="minus" class="icon-minus"></i></td>
                             <td><i data-lucide="minus" class="icon-minus"></i></td>
-                            <td><span class="text-value">1회</span></td>
+                            <td><span class="text-value">2년차</span></td>
                             <td><i data-lucide="minus" class="icon-minus"></i></td>
                         </tr>
+
                         <tr>
                             <td class="feature-name">동물등록 내장형칩</td>
                             <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
@@ -423,6 +399,18 @@
                             <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
                             <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
                         </tr>
+
+                        <tr class="category-row">
+                            <td colspan="5">🛍️ 생활 혜택</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">유기농 사료+패드+간식 배송</td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><span class="text-value">사료만 3개월</span></td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><span class="text-value">사료만 3개월</span></td>
+                        </tr>
+
                         <tr>
                             <td class="feature-name">주오몰 할인</td>
                             <td><span class="text-value">20%</span></td>
@@ -430,14 +418,26 @@
                             <td><span class="text-value">30%</span></td>
                             <td><span class="text-value">20%</span></td>
                         </tr>
-                        <tr>
-                            <td class="feature-name">2년차 추가 혜택</td>
-                            <td><i data-lucide="minus" class="icon-minus"></i></td>
-                            <td><span class="text-muted">종합검진<br>방문훈련</span></td>
-                            <td><span class="text-value">위생+목욕 4회<br>호텔링</span></td>
-                            <td><span class="text-muted">종합검진 전환</span></td>
+
+                        <!-- 케어 서비스 -->
+                        <tr class="category-row">
+                            <td colspan="5">🐾 케어 서비스</td>
                         </tr>
-                        
+                        <tr>
+                            <td class="feature-name">방문 훈련 (1회)</td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                            <td><span class="text-value">2년차</span></td>
+                            <td><i data-lucide="check-circle-2" class="icon-check"></i></td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">위생·목욕 (4회) · 호텔링 (1박)</td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                            <td><span class="text-value">2년차</span></td>
+                            <td><i data-lucide="minus" class="icon-minus"></i></td>
+                        </tr>
+
                         <!-- Footer Actions -->
                         <tr class="footer-row">
                             <td></td>
@@ -468,6 +468,40 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Modal -->
+    <div class="compare-modal" id="info-modal" hidden>
+        <div class="compare-modal-backdrop" onclick="closeInfoModal()"></div>
+        <div class="compare-modal-box promo-modal-box" style="max-width: 480px; text-align: center;">
+            <button type="button" onclick="closeInfoModal()" style="position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; cursor: pointer; color: var(--muted); transition: color 0.2s; padding: 0.2rem; z-index: 10;">
+                <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+            </button>
+            
+            <div style="margin-bottom: 1rem; color: var(--orange);">
+                <i data-lucide="gift" style="width: 48px; height: 48px; stroke-width: 1.5;"></i>
+            </div>
+            <h3 class="compare-modal-title" style="font-size: 1.5rem; margin-bottom: 0.5rem; word-break: keep-all;">주오 멤버십 특별 혜택 안내</h3>
+            <p class="compare-modal-desc" style="font-size: 1rem; color: var(--text); word-break: keep-all;">가입 전, 우리 아이를 위한 특별한 혜택을 꼭 확인하세요!</p>
+            
+            <div style="margin: 1.5rem 0; text-align: left; background: var(--orange-light); border: 1px solid rgba(255,122,0,0.2); padding: 1.25rem; border-radius: var(--radius-md);">
+                <ul style="padding-left: 0; margin: 0; list-style: none; display: flex; flex-direction: column; gap: 1rem; font-size: 0.95rem; line-height: 1.5; color: var(--text);">
+                    <li style="display: flex; gap: 0.6rem; align-items: flex-start;">
+                        <i data-lucide="check-circle-2" style="width: 20px; height: 20px; color: var(--orange); flex-shrink: 0; margin-top: 0.1rem;"></i>
+                        <div><strong style="color: var(--orange-deep);">평생 동결 혜택</strong><br><span style="color: var(--muted); font-size: 0.85rem; word-break: keep-all;">지금 가입하시면 1년 의무 기간 이후에도 멤버십 금액이 평생 오르지 않습니다.</span></div>
+                    </li>
+                    <li style="display: flex; gap: 0.6rem; align-items: flex-start;">
+                        <i data-lucide="check-circle-2" style="width: 20px; height: 20px; color: var(--orange); flex-shrink: 0; margin-top: 0.1rem;"></i>
+                        <div><strong>방문 훈련 불가 지역 맞춤 케어</strong><br><span style="color: var(--muted); font-size: 0.85rem; word-break: keep-all;">훈련사 방문이 불가한 지역일 시, 전문가의 <strong>1:1 유선 및 화상 훈련</strong>으로 대체 진행되어 어디서나 꼼꼼한 케어를 받을 수 있습니다.</span></div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="compare-modal-actions" style="flex-direction: column; gap: 0.5rem;">
+                <button class="compare-btn-open" onclick="closeInfoModal()" style="width: 100%; font-size: 1.05rem; padding: 1rem; background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%);">확인했습니다</button>
+                <button type="button" onclick="closeInfoModal(true)" style="background: none; border: none; color: var(--muted); font-size: 0.85rem; text-decoration: underline; cursor: pointer; padding: 0.5rem;">오늘은 그만 보기</button>
             </div>
         </div>
     </div>
